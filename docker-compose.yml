@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   wordpress:
-    container_name: scoutslavaux_wp_srv
+    container_name: wp_stack_srv
     depends_on:
        - db
     image: wordpress
@@ -21,7 +21,7 @@ services:
       - db:db
 
   db:
-    container_name: scoutslavaux_wp_db
+    container_name: wp_stack_db
     image: mariadb
     restart: always
     environment:
@@ -33,7 +33,7 @@ services:
       - ./db:/var/lib/mysql
 
   phpmyadmin:
-    container_name: scoutslavaux_wp_phpmyadmin
+    container_name: wp_stack_phpmyadmin
     image: phpmyadmin/phpmyadmin
     links:
       - db:db
