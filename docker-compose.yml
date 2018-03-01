@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+  wordpress:
+    container_name: scoutslavaux_wp_srv
+    depends_on:
+       - db
+    image: wordpress
+    links:
+      - wordpress_db:mysql
+    ports:
+      - 8080:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    volumes:
+      - ./volumes/srv:/var/www/html/
+    links:
+      - db:db
+
+  db:
+    container_name: scoutslavaux_wp_db
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - ./volumes/db:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: scoutslavaux_wp_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db:db
+    ports:
+      - 8181:80
+    environment:
+      - PMA_ARBITRARY=1
+    volumes:
+      - /sessions
