@@ -33,7 +33,9 @@ Find your PHPMyAdmin at http://localhost:8181.
 ## Credentials
 
 DB root password: `secret`
+
 DB WordPress user: `wordpress`
+
 DB WordPress password: `wordpress`
 
 Connect to PHPMyAdmin:
