@@ -46,7 +46,7 @@ Connect to PHPMyAdmin:
 ## Directory structure
 
 * db: Persistent volume to store MariaDB database.
-* wp: WordPress files.
+* wp: Persistent volume to store WordPress files.
 
 ## Other commands
 
