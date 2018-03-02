@@ -31,6 +31,8 @@ services:
       MYSQL_PASSWORD: wordpress
     volumes:
       - ./db:/var/lib/mysql
+      - ./db-conf:/etc/mysql/mariadb.conf.d/
+      - ./logs:/var/log
 
   phpmyadmin:
     container_name: wp_stack_phpmyadmin

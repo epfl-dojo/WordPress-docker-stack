@@ -24,6 +24,41 @@ docker-compose up -d
 ```
 * `-d` means detach, the process will be detach of the tty (terminal)
 
+## Makefile alternative
+
+This stack contains a Makefile. It requires having make installed. This provides
+some useful commands.
+
+Launch the stack:
+```
+make up
+```
+
+Stop the stack:
+```
+make down
+```
+
+Fix permissions:
+```
+make perm
+```
+
+See all docker logs:
+```
+make logs
+```
+
+See MariaDB docker logs:
+```
+make logs-db
+```
+
+See WordPress docker logs:
+```
+make logs-wp
+```
+
 ## Connection
 
 Find your WordPress website at http://localhost:8080.
@@ -47,6 +82,20 @@ Connect to PHPMyAdmin:
 
 * db: Persistent volume to store MariaDB database.
 * wp: Persistent volume to store WordPress files.
+
+## Issues
+
+### Unable to edit files
+```
+make perm
+```
+
+#### WordPress asks for a FTP server
+Add the following line to `wp-config.php`:
+```php
+// Don't download through FTP
+define('FS_METHOD', 'direct');
+```
 
 ## Other commands
 
